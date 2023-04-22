@@ -22,7 +22,7 @@ CURR_DIR=$(pwd)
 # Get the name of the current branch
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 # Get the name of the previous branch
-previous_branch=$(git rev-parse --abbrev-ref @{-1})
+previous_branch=$(git rev-parse --abbrev-ref @{-5})
 diff=$(git diff "$previous_branch" "$current_branch")
 
 # Find added and removed code chunks
@@ -38,7 +38,7 @@ added=$(echo "$added" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 removed=$(echo "$removed" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
 # shellcheck disable=SC2261
-<current>/models/$OS_MODEL -m <model> -p "Generate a short summary of this code change below. $added $removed" > $FILE_PATH
+/Users/loghi/Documents/git-hooks/models/$OS_MODEL -m /Users/loghi/Documents/git-hooks/models/gpt4all.bin -p "Generate a short summary of this code change below. $added $removed" > $FILE_PATH
 
 # Check if the file exists
 if [ -f "$FILE_PATH" ]; then
