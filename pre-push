@@ -2,16 +2,16 @@
 
 CURR_DIR=$(pwd)
 
-# Get the local and remote branch names from the arguments passed to the hook
-local_branch=$(git rev-parse --abbrev-ref HEAD)
-remote_branch=$(git rev-parse --abbrev-ref "$1")
+# Get the branch name being pushed
+current_branch=$(git symbolic-ref --short HEAD)
 
-# Check if the remote branch is "0" or "00" (indicating a new branch)
-if [[ "$remote_branch" == "0" ]] || [[ "$remote_branch" == "00" ]]; then
-  # Run your desired command here
-  echo "Generating PR suggestions on the first push to new branch"
-  ./CURR_DIR/pre-commit.sh
+# Check if the branch has been pushed before
+if [ $(git rev-parse --verify origin/$current_branch) ]; then
+  echo "Branch '$current_branch' has already been pushed to remote. Skipping hook."
+  exit 0
 fi
 
-# Exit with a zero status to allow the push to proceed
-exit 0
+# Run your Git hook commands here
+echo "Running Git hook commands for branch '$current_branch'..."
+
+"$CURR_DIR"/suggestion.sh

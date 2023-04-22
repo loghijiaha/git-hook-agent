@@ -1,8 +1,23 @@
 #!/bin/bash
-# exec &> /tmp/output.log
-export FILE_PATH=/tmp/tmp.txt
 
-# CURR_DIR=$(pwd)
+# Initialize variables
+FILE_PATH=/tmp/tmp.txt
+OS_MODEL='macOS'
+
+exec &> /tmp/output.log
+
+# Check OS type
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  OS_MODEL='macOS/gpt4all-lora-quantized-OSX-m1'
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  OS_MODEL='linux/gpt4all-lora-quantized-linux-x86'
+else
+  echo "Unsupported operating system."
+  exit 1
+fi
+
+CURR_DIR=$(pwd)
 
 # Get the diff
 diff=$(git diff --cached)
@@ -19,7 +34,8 @@ removed=$(echo "$removed" | sed 's/^+++ b\/.*$//')
 added=$(echo "$added" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 removed=$(echo "$removed" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
 
-$CURR_DIR/models/macOS/gpt4all-lora-quantized-OSX-m1 -m $CURR_DIR/models/gpt4all.bin -p "Genereate a short summary of this code change below. $added $removed" > $FILE_PATH
+# shellcheck disable=SC2261
+<current>/models/$OS_MODEL -m <model> -p "Generate a short summary of this code change below. $added $removed" > $FILE_PATH
 
 # Check if the file exists
 if [ -f "$FILE_PATH" ]; then
