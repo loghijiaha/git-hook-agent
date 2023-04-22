@@ -20,7 +20,11 @@ fi
 CURR_DIR=$(pwd)
 
 # Get the diff
-diff=$(git diff --cached)
+# Get the name of the current branch
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+# Get the name of the previous branch
+previous_branch=$(git rev-parse --abbrev-ref @{-1})
+diff=$(git diff "$previous_branch" "$current_branch")
 
 # Find added and removed code chunks
 added=$(echo "$diff" | grep -E '^\+' | sed 's/^\++ //')
