@@ -1,0 +1,6 @@
+models/*
+.idea
+
+# Except executables
+!models/linux
+!models/macOS

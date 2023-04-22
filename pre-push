@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CURR_DIR=$(pwd)
+
+# Get the local and remote branch names from the arguments passed to the hook
+local_branch=$(git rev-parse --abbrev-ref HEAD)
+remote_branch=$(git rev-parse --abbrev-ref "$1")
+
+# Check if the remote branch is "0" or "00" (indicating a new branch)
+if [[ "$remote_branch" == "0" ]] || [[ "$remote_branch" == "00" ]]; then
+  # Run your desired command here
+  echo "Generating PR suggestions on the first push to new branch"
+  ./CURR_DIR/pre-commit.sh
+fi
+
+# Exit with a zero status to allow the push to proceed
+exit 0
