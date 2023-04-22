@@ -32,6 +32,7 @@ if [ -f "$FILE_PATH" ]; then
 else
   # If the file does not exist, display an error message
   echo "Error: File not found"
+  exit 0
 fi
 
 
