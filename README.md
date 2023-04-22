@@ -18,3 +18,5 @@ Model can be found here
 Voila!! :fire: PR suggestion will be shown once you tried to push your commits to remote repository.
 
 Inspired from [GPT4ALL](https://github.com/nomic-ai/gpt4all) Project. :hugs:
+
+** Note: Windows is not supported yet
