@@ -6,7 +6,7 @@ Auto generate your PR descriptions with the code changes :star_struck:
 
 ### Download model
 
-Model can be found here
+Sample model can be found here
 [ggml Model Download Link](https://gpt4all.io/ggml-gpt4all-j.bin)
 
 ### Load the model
