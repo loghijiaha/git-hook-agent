@@ -19,7 +19,6 @@ fi
 
 CURR_DIR=$(pwd)
 
-# Get the diff
 # Get the name of the current branch
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 # Get the name of the previous branch
