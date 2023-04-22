@@ -20,7 +20,6 @@ fi
 CURR_DIR=$(pwd)
 
 # Get the diff
-diff=$(git diff --cached)
 
 # Find added and removed code chunks
 added=$(echo "$diff" | grep -E '^\+' | sed 's/^\++ //')
