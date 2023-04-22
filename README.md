@@ -1,6 +1,6 @@
 # Git-Hook-Agent
 
-Auto generate your PR descriptions with the code changes :star_struck:
+Auto generate your PR descriptions for the code changes :star_struck:
 
 ## Getting started
 
